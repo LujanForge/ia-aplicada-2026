@@ -1,0 +1,110 @@
+LINEAMIENTOS DE SEGURIDAD Y MANEJO DE DATOS GENÓMICOS DEL PROYECTO CERBERO
+Documento ficticio elaborado con fines académicos para el laboratorio de la semana 5 de Inteligencia Artificial Aplicada. No representa a ninguna institución real ni contiene datos personales.
+
+1. Propósito del documento
+
+El proyecto Cerbero tiene como objetivo desarrollar un modelo de inteligencia artificial capaz de identificar, a partir de datos genéticos, indicios de la presencia de células cancerígenas, con el fin de apoyar el diagnóstico temprano. Debido a que la información genética es una de las más sensibles que existen, este documento establece las reglas que todos los integrantes del equipo deben seguir para obtener, almacenar, procesar y compartir los datos que utiliza el proyecto. Estos lineamientos aplican durante todas las etapas del desarrollo: investigación, preparación de datos, entrenamiento del modelo, pruebas y presentación de resultados.
+
+El cumplimiento de estas reglas es obligatorio para todos los integrantes del equipo y para cualquier colaborador externo que tenga acceso a los recursos del proyecto. Cualquier duda sobre su aplicación debe consultarse con el responsable de seguridad del equipo antes de realizar la acción en cuestión.
+
+2. Alcance
+
+Estos lineamientos cubren los conjuntos de datos utilizados para entrenar y evaluar el modelo, el código fuente almacenado en el repositorio del proyecto, los documentos de trabajo, las bitácoras, las presentaciones y cualquier respuesta generada por modelos de lenguaje durante el desarrollo. También cubren los equipos de cómputo personales de los integrantes cuando estos se utilizan para trabajar con información del proyecto.
+
+Quedan fuera del alcance los materiales de clase que no contienen datos del proyecto, como apuntes generales o lecturas asignadas por el profesor, siempre que no se mezclen con archivos de datos genéticos.
+
+3. Principios generales
+
+El equipo se compromete a seguir cinco principios en todo momento. El primero es la minimización: solo se descargan y se procesan los datos estrictamente necesarios para la tarea que se está realizando. El segundo es la anonimización: ningún archivo de trabajo debe contener nombres, fechas de nacimiento, direcciones ni cualquier otro dato que permita identificar a una persona. El tercero es la trazabilidad: toda modificación a los datos o al modelo debe quedar registrada en el repositorio con un mensaje de commit claro. El cuarto es el acceso mínimo: cada integrante solo tiene acceso a los recursos que necesita para su función. El quinto es la transparencia: los resultados del modelo se presentan siempre junto con sus limitaciones y su margen de error.
+
+Estos principios no son opcionales ni dependen de la urgencia de una entrega. Si un plazo obliga a elegir entre cumplir una regla y terminar a tiempo, el equipo debe informar al profesor y solicitar orientación, en lugar de omitir la regla.
+
+4. Fuentes de datos autorizadas
+
+El proyecto utiliza exclusivamente conjuntos de datos públicos destinados a la investigación, como los que forman parte de repositorios abiertos de genómica del cáncer. Antes de descargar cualquier conjunto de datos, el integrante responsable debe verificar tres cosas: que el conjunto sea de acceso abierto y no de acceso controlado, que su licencia permita el uso académico y que no incluya información identificable de los pacientes.
+
+Está prohibido utilizar datos genéticos obtenidos de familiares, amigos, compañeros o de servicios comerciales de pruebas genéticas, aun cuando la persona dé su consentimiento verbal. El proyecto no cuenta con la aprobación de un comité de ética para trabajar con muestras de personas reales, por lo que cualquier dato de ese tipo queda fuera de los límites del trabajo.
+
+Cada conjunto de datos autorizado debe registrarse en un archivo llamado fuentes_de_datos.md dentro del repositorio, indicando su nombre, la fecha de descarga, la versión, la licencia y el integrante que lo descargó.
+
+5. Almacenamiento y organización de archivos
+
+Los archivos de datos crudos se guardan en una carpeta separada del código, y esa carpeta se incluye en el archivo .gitignore para que nunca se suba al repositorio público. En el repositorio solo se suben el código, los cuadernos de análisis sin salidas que muestren datos completos, los documentos de diseño y los resultados agregados, como métricas de exactitud o matrices de confusión.
+
+Los equipos personales que contengan datos del proyecto deben tener contraseña de inicio de sesión y, cuando el sistema operativo lo permita, cifrado de disco activado. No se permite guardar datos del proyecto en memorias USB sin cifrar ni en servicios de almacenamiento en la nube personales que no hayan sido acordados por el equipo.
+
+Al terminar el cuatrimestre, los integrantes deben borrar las copias locales de los datos crudos que ya no necesiten y confirmar el borrado en la bitácora del proyecto.
+
+6. Uso de modelos de lenguaje durante el desarrollo
+
+El equipo puede utilizar modelos de lenguaje generativos como apoyo para redactar documentación, explicar conceptos, proponer código y revisar errores. Sin embargo, ningún integrante debe pegar en un modelo de lenguaje fragmentos de los conjuntos de datos, identificadores de muestras ni resultados individuales del modelo. La razón es que el equipo no controla cómo el proveedor del servicio almacena o reutiliza la información que recibe.
+
+Cuando se use un modelo de lenguaje para resumir o interpretar un documento largo, como una norma, un artículo científico o este mismo lineamiento, el integrante debe verificar las respuestas contra el texto original antes de usarlas. Los modelos pueden omitir información situada en medio de textos largos o generar datos que no aparecen en el documento. Cualquier cifra, nombre de gen o afirmación técnica obtenida de un modelo de lenguaje debe confirmarse en una fuente primaria.
+
+Además, todo uso de inteligencia artificial generativa en los entregables debe declararse por escrito en la sección de declaración de uso de IA del reporte correspondiente, indicando la herramienta utilizada y la tarea en la que apoyó.
+
+7. Configuración recomendada de los modelos
+
+Para tareas que requieren precisión, como redactar avisos de privacidad, documentación técnica o resúmenes de normas, se recomienda configurar los modelos con una temperatura baja, de modo que las respuestas sean más estables y predecibles. Para tareas creativas, como proponer nombres, ideas de interfaz o ejemplos para una presentación, puede usarse una temperatura más alta, siempre revisando que las respuestas tengan sentido.
+
+Los documentos que se entreguen a un modelo deben medirse previamente en tokens para asegurar que caben en la ventana de contexto. El código de verificación interno de este documento es AZUL-7342. Si un documento excede el límite, debe dividirse en secciones y procesarse por partes, conservando el título de cada sección para no perder el contexto. Los valores concretos de temperatura y de tamaño máximo de documento se definirán con base en los experimentos del laboratorio de la semana 5 y se registrarán en la ficha de selección del modelo.
+
+8. Entrenamiento y evaluación del modelo de clasificación
+
+El modelo de clasificación del proyecto, ya sea una regresión logística o una red neuronal, debe entrenarse únicamente con los conjuntos de datos registrados en el archivo de fuentes. Los datos deben dividirse en un conjunto de entrenamiento, uno de validación y uno de prueba antes de cualquier análisis, y el conjunto de prueba no debe utilizarse para ajustar el modelo.
+
+Cada experimento de entrenamiento debe registrarse con la fecha, la configuración utilizada, la versión de los datos y las métricas obtenidas. Si una métrica mejora de forma inesperada, el equipo debe revisar que no exista fuga de información entre los conjuntos antes de reportar el resultado.
+
+El equipo debe evaluar si el modelo funciona de manera distinta según el origen de las muestras, ya que muchos conjuntos de datos genómicos públicos tienen una representación desigual de poblaciones. Si se detecta una diferencia relevante, esta debe documentarse como limitación del modelo en lugar de ocultarse.
+
+9. Presentación de resultados
+
+Los resultados del proyecto deben comunicarse como un prototipo académico y nunca como una herramienta de diagnóstico. En presentaciones, carteles o publicaciones en redes sociales, el equipo debe aclarar que el modelo no sustituye la valoración de un profesional de la salud y que no ha sido validado clínicamente.
+
+Las gráficas y tablas de resultados deben mostrar datos agregados. No se deben mostrar perfiles genéticos individuales, aun cuando provengan de conjuntos de datos públicos y anonimizados, porque su presentación fuera de contexto puede generar confusión sobre el alcance del proyecto.
+
+10. Gestión de incidentes
+
+Se considera incidente cualquier situación en la que datos del proyecto se compartan con personas no autorizadas, se suban por error a un repositorio público, se pierdan o se usen fuera de los fines establecidos en este documento. También se considera incidente pegar datos del proyecto en un servicio externo no autorizado.
+
+Cuando un integrante detecte un incidente, debe avisar al resto del equipo en un plazo no mayor a veinticuatro horas. Si los datos se subieron a un repositorio, se deben eliminar del historial y no solo del último commit. El equipo debe registrar en la bitácora qué ocurrió, qué datos se vieron afectados, qué medidas se tomaron y qué se cambiará para evitar que vuelva a ocurrir.
+
+Los incidentes no se usan para buscar culpables, sino para mejorar los procesos. Reportar un error a tiempo siempre es preferible a ocultarlo.
+
+11. Roles y responsabilidades
+
+El responsable de seguridad del equipo revisa que el archivo .gitignore esté actualizado, que el registro de fuentes esté completo y que los commits no incluyan datos crudos. El responsable de inteligencia artificial investiga y propone las herramientas y los modelos que se utilizarán, y documenta su configuración. El responsable de documentación mantiene la bitácora, los reportes y la declaración de uso de IA de cada entrega.
+
+Un mismo integrante puede asumir más de un rol, pero ninguna revisión de seguridad debe ser realizada únicamente por la misma persona que hizo el cambio revisado.
+
+12. Control de versiones y uso del repositorio
+
+Todo el trabajo del proyecto se organiza en un repositorio de GitHub con una estructura de carpetas acordada por el equipo: una carpeta para el código del modelo, otra para los cuadernos de análisis, otra para la documentación y otra para los laboratorios semanales. Ningún integrante debe crear carpetas nuevas en la raíz del repositorio sin avisar al resto del equipo, para evitar que los archivos se dispersen y se pierda el control de lo que se ha entregado.
+
+Los mensajes de commit deben describir en una sola línea qué cambió y por qué, por ejemplo indicando la semana del laboratorio o la sección del documento que se modificó. Se evitan mensajes genéricos como "cambios" o "actualización", porque no permiten reconstruir la historia del proyecto cuando surge un problema.
+
+Antes de subir cualquier cambio, el integrante debe revisar la lista de archivos que se van a incluir y confirmar que ninguno contiene datos crudos, contraseñas, claves de acceso a servicios externos ni información personal. Las claves de acceso a servicios de inteligencia artificial se guardan en variables de entorno o en archivos locales excluidos del repositorio, nunca escritas directamente en el código.
+
+Cuando dos integrantes trabajen al mismo tiempo sobre el mismo archivo, deben coordinarse antes para evitar conflictos. Si aparece un conflicto al combinar cambios, se resuelve en conjunto y se deja constancia en la bitácora de qué versión se conservó.
+
+13. Glosario de términos
+
+Anonimización: proceso de eliminar o transformar los datos que permiten identificar a una persona, de modo que la información ya no pueda relacionarse con ella.
+
+Conjunto de prueba: parte de los datos que se reserva para medir el desempeño final del modelo y que no se utiliza durante el entrenamiento ni el ajuste.
+
+Fuga de información: error en el que datos del conjunto de prueba influyen, de forma directa o indirecta, en el entrenamiento del modelo, lo que produce métricas engañosamente altas.
+
+Modelo de lenguaje: sistema de inteligencia artificial entrenado con grandes cantidades de texto que genera respuestas prediciendo un fragmento de texto tras otro.
+
+Temperatura: parámetro que controla qué tan variadas o predecibles son las respuestas de un modelo de lenguaje.
+
+Token: fragmento de texto con el que un modelo de lenguaje lee y escribe; puede ser una palabra completa, una parte de una palabra o un signo de puntuación.
+
+Ventana de contexto: cantidad máxima de tokens que un modelo de lenguaje puede considerar en una sola interacción, incluyendo el texto que recibe y el que produce.
+
+14. Revisión de estos lineamientos
+
+Estos lineamientos se revisarán al final de cada unidad del curso o antes si cambia el alcance del proyecto, si se incorpora un nuevo conjunto de datos o si ocurre un incidente. Cada revisión debe registrarse en el repositorio con la fecha y un resumen de los cambios realizados.
+
+Al firmar la bitácora del proyecto, cada integrante confirma que leyó este documento y que se compromete a cumplirlo durante todo el desarrollo de Cerbero.
