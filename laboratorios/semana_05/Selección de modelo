@@ -1,0 +1,43 @@
+# Selección de modelo generativo para el proyecto Cerbero
+
+Proyecto: Cerbero, IA para detectar indicios de células cancerígenas a partir de datos genéticos (equipo: Luis, Enrique y Daniel).
+Laboratorio: Semana 5, tokens, temperatura y ventana de contexto.
+
+## Modelos evaluados
+
+| Modelo | Dónde | Qué se probó |
+|---|---|---|
+| Tokenizador GPT-5.x & O1/3 (OpenAI) | platform.openai.com/tokenizer | Conteo de tokens en español e inglés |
+| Gemma 4 26B A4B IT | Google AI Studio | Temperatura (1 ejecución real a 1.5; el límite gratuito se agotó) |
+| Gemini Flash | gemini.google.com (cuenta de Global University) | Ventana de contexto y posición de la aguja |
+| ChatGPT, Gemini y Deepseek | Semana 1 | Comparación general de respuestas |
+
+## Evidencia de tokens
+
+Tokens de mi documento de referencia: **2,647** (13,390 caracteres, documento completo, no estimado).
+
+Caracteres por token en español: **5.59** en el párrafo de prueba y **5.06** en el documento completo, contra **5.68** del mismo párrafo en inglés. El párrafo en español usó 116 tokens contra 94 en inglés (23 % más).
+
+Implicación para mi proyecto: los documentos de Cerbero estarán en español, así que ocuparán alrededor de una cuarta parte más de la ventana de contexto (y de costo, si se paga por token) que el mismo contenido en inglés. Hay que medir los documentos en tokens antes de enviarlos al modelo.
+
+## Evidencia de temperatura
+
+> Nota: de las 9 ejecuciones, solo la primera a temperatura 1.5 es real. Las otras 8 se simularon con autorización del profesor porque se agotó el límite gratuito de AI Studio. Estos valores son ilustrativos.
+
+Temperatura que usaré para tareas de precisión: **0 a 0.2**, porque a temperatura 0 las tres respuestas fueron idénticas (16 palabras distintas en total), lo que da textos estables para documentación técnica, avisos de privacidad o resúmenes de normas.
+
+Temperatura que usaré para tareas creativas: **0.7**, porque da variedad (26 palabras distintas) sin perder el sentido. Evitaré 1.5 (43 palabras distintas), porque a esa temperatura el modelo cambia de estilo y puede producir frases imprecisas.
+
+## Evidencia de contexto
+
+El modelo no empezó a fallar en ningún intento: Gemini Flash encontró el código AZUL-7342 con 1, 2 y 4 copias del documento (hasta unos 10,600 tokens) y también con la aguja al inicio, a la mitad y al final. Nunca respondió "No aparece" ni inventó un código. Me detuve en 4 copias por tiempo, así que el límite real de este modelo está por encima de lo que medí.
+
+Mis documentos del proyecto miden aproximadamente 2,600 tokens cada uno (como el documento de lineamientos). Por lo tanto: **caben completos**. Aun así, si en el futuro se usan artículos científicos largos, conviene dividirlos por secciones y verificar las respuestas contra el texto original.
+
+## Decisión
+
+Modelo elegido: **Gemini Flash** para leer y resumir documentos del proyecto, porque encontró la información en todos los intentos de contexto y está disponible con la cuenta institucional.
+
+Configuración: temperatura **0 a 0.2** para documentación, resúmenes y avisos; temperatura **0.7** para lluvia de ideas y nombres.
+
+Restricciones de datos según la política de la semana 4: no se pegarán en ningún modelo de lenguaje datos genéticos, identificadores de muestras ni resultados individuales; solo documentos públicos o ficticios. Toda respuesta del modelo con cifras, nombres de genes o afirmaciones técnicas se verificará en una fuente primaria, y todo uso de IA se declarará en los entregables.
