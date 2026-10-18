@@ -1,0 +1,82 @@
+# P02 — Exploración del problema de Cerbero (datasets, modelos y resultados)
+
+## Objetivo
+
+Explorar con un modelo generativo qué datasets públicos, modelos de clasificación y resultados previos existen para detectar indicios de cáncer a partir de datos genéticos, como punto de partida del proyecto Cerbero.
+
+## Modelo y configuración
+
+- Modelo: Gemini (cuenta de Global University)
+- Temperatura: por defecto (no se controla en la interfaz web)
+- Fecha de ejecución: 2026-10-18
+
+## Prompt (versión v2)
+
+```text
+Quiero desarrollar una IA que prediga, mediante el análisis de datos genéticos, la presencia de células cancerígenas en una persona para diagnóstico temprano. ¿Qué datasets públicos existen para esto, qué modelos de clasificación se usan y qué resultados han reportado estudios previos? Incluye al menos dos referencias bibliográficas en formato APA 7.
+```
+
+Nota: el texto exacto del prompt usado en la semana 1 no se conservó. Esta versión se reconstruyó a partir del problema definido en la bitácora del proyecto y se ejecutó de nuevo el 2026-10-18.
+
+## Resultado obtenido
+
+```text
+Para desarrollar un sistema de Inteligencia Artificial enfocado en el diagnóstico temprano y la clasificación de cáncer mediante datos genómicos y transcriptómicos, se debe abordar una arquitectura pipeline que gestione la alta dimensionalidad (decenas de miles de genes) frente a un número limitado de muestras ($p \gg n$).
+
+1. Datasets Públicos Principales
+Para entrenar y validar modelos de aprendizaje automático en genómica del cáncer, los recursos de acceso abierto más relevantes son:
+The Cancer Genome Atlas (TCGA): El dataset de referencia global gestionado por el NCI y NHGRI. Contiene datos de más de 11,000 pacientes para 33 tipos de cáncer. Incluye RNA-Seq (expresión génica), microRNAs, mutaciones somáticas (SNVs), variación en el número de copias (CNV) y datos de metilación del ADN.
+GEO (Gene Expression Omnibus - NCBI): Repositorio internacional que alberga miles de microarrays y experimentos de secuenciación de ARN (RNA-Seq) subidos por la comunidad investigadora mundial.
+ICGC Data Portal (International Cancer Genome Consortium): Proporciona datos genómicos integrados de más de 50 proyectos internacionales de cáncer.
+GTEx (Genotype-Tissue Expression): Ofrece perfiles de expresión génica de tejidos humanos sanos (no tumorales), lo que resulta esencial para entrenar modelos de clasificación binaria (Cáncer vs. Control Sano).
+
+2. Modelos de Clasificación Utilizados
+El análisis de datos de expresión génica o variaciones genómicas utiliza algoritmos tradicionales y arquitecturas de aprendizaje profundo (Deep Learning).
+Modelos Tradicionales (con Selección/Reducción de Características)
+Dado que la expresión génica estándar maneja entre 20,000 y 60,000 transcritos por muestra, el uso de reducción de dimensionalidad como PCA (Análisis de Componentes Principales), mRMR o selección por Lasso / ElasticNet es obligatorio antes de aplicar:
+Support Vector Machines (SVM): Funciona muy bien en espacios de alta dimensionalidad con hiperplanos lineales o RBF.
+Random Forest y XGBoost: Algoritmos basados en árboles que ofrecen interpretabilidad natural midiendo la importancia de las características (genes marcadores).
+Modelos de Aprendizaje Profundo (Deep Learning)
+Autoencoders (AE y VAE): Utilizados para la reducción no lineal de la dimensionalidad, comprimiendo el perfil transcriptómico en un espacio latente de menor dimensión antes de pasar a un clasificador.
+Redes Neuronales Convolucionales 1D/2D (CNNs): Empleadas convirtiendo los perfiles de expresión génica en matrices/imágenes sintéticas mediante técnicas como DeepInsight o OmicsMapNet.
+Graph Neural Networks (GNNs): Utilizan redes de interacción proteína-proteína (PPI) como estructura de grafo donde los genes son nodos, incorporando conocimiento biológico previo al proceso de aprendizaje.
+
+3. Resultados Reportados en Estudios Previos
+Los modelos aplicados sobre datos de RNA-Seq de TCGA obtienen métricas elevadas en clasificación binaria (Tejido Tumoral vs. Tejido Sano) y multiclase (Subtipos de Cáncer):
+Paradigma | Tarea de Clasificación | Métricas Típicas
+SVM + Lasso / XGBoost | Detección binaria (ej. Cáncer de Mama / Pulmón) | Accuracy: 96% - 98.5%, AUC-ROC: > 0.98
+Deep Autoencoders + MLP | Clasificación Pan-Cáncer (33 tipos de TCGA) | Accuracy: 94% - 97%
+CNNs (DeepInsight / OmicsMapNet) | Detección temprana y estadificación multiclase | Accuracy: 95% - 98%, F1-Score: > 0.95
+
+Referencias Bibliográficas (APA 7ª edición)
+Alharbi, F., & Vakanski, A. (2023). Machine learning methods for cancer classification using gene expression data: A review. Bioengineering, 10(2), Article 173. https://doi.org/10.3390/bioengineering10020173
+Liñares-Blanco, J., Pazos, A., & Fernandez-Lozano, C. (2021). Machine learning analysis of TCGA cancer data. PeerJ Computer Science, 7, Article e584. https://doi.org/10.7717/peerj-cs.584
+```
+
+## Verificación
+
+| Afirmación verificable | Fuente primaria | Clasificación |
+|---|---|---|
+| TCGA tiene datos de más de 11,000 pacientes de 33 tipos de cáncer y la gestionan el NCI y el NHGRI | NHGRI, comunicado del PanCancer Atlas (05/04/2018): https://www.genome.gov/news/news-release/NIH-completes-in-depth-genomic-analysis-of-33-cancer-types | Correcta |
+| El ICGC Data Portal integra datos de más de 50 proyectos internacionales | ICGC ARGO, ICGC 25K Data (86 proyectos, 24,289 donantes): https://docs.icgc-argo.org/docs/data-access/icgc-25k-data | Correcta (el número real es 86; "más de 50" es cierto pero se queda corto) |
+| Alharbi y Vakanski (2023), Bioengineering, 10(2), 173 | MDPI, DOI resuelto: https://www.mdpi.com/2306-5354/10/2/173 | Correcta |
+| Liñares-Blanco, Pazos y Fernandez-Lozano (2021), PeerJ Computer Science, 7, e584 | PeerJ: https://peerj.com/articles/cs-584 y PMC8293929 | Correcta |
+
+Tasa de error de esta respuesta: 0% (0 de 4 afirmaciones verificadas)
+
+## Evaluación
+
+- Qué funcionó: en un tema técnico y muy documentado, los datasets y las dos referencias existen y sus datos coinciden con la fuente. Las referencias traen DOI que sí resuelve.
+- Qué falló: la tabla de "métricas típicas" (accuracy de 94% a 98.5%) no cita ningún estudio, así que no se puede verificar y no debe usarse en el proyecto (regla 2 de las reglas de verificación). La cifra del ICGC es imprecisa.
+- Qué cambiaré en la siguiente versión: pedir que cada métrica de resultados venga con el estudio exacto que la reporta, y limitar la búsqueda a un tipo de cáncer o gen específico, como se definió en la bitácora.
+
+## Historial de versiones
+
+| Versión | Fecha | Cambio realizado | Resultado del cambio |
+|---|---|---|---|
+| v1 | Semana 1 | Versión inicial (texto no conservado) | Exploración inicial del problema |
+| v2 | 2026-10-18 | Prompt reconstruido; se piden datasets, modelos, resultados y dos referencias APA 7 | 0% de error en 4 afirmaciones verificadas; métricas sin fuente |
+
+## Datos usados
+
+Confirmo que este prompt cumple la sección 5 de la política de datos del proyecto: [sí / no, y por qué]
