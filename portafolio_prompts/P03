@@ -1,0 +1,104 @@
+# P03 — Riesgos técnicos, éticos y legales de Cerbero
+
+## Objetivo
+
+Identificar los riesgos técnicos, éticos y legales de una IA que detecta indicios de cáncer a partir de datos genéticos de TCGA, y las leyes mexicanas aplicables, para planear cómo mitigarlos en el proyecto Cerbero.
+
+## Modelo y configuración
+
+- Modelo: Gemini (cuenta de Global University)
+- Temperatura: por defecto (no se controla en la interfaz web)
+- Fecha de ejecución: 2026-10-18
+
+## Prompt (versión v1)
+
+```text
+Lista 5 riesgos técnicos y 5 riesgos éticos o legales de una IA que detecta indicios de cáncer a partir de datos genéticos del dataset público TCGA. Para cada riesgo legal, cita la ley mexicana aplicable con su fecha de publicación en el Diario Oficial de la Federación.
+```
+
+## Resultado obtenido
+
+```text
+Riesgos Técnicos
+Sesgo poblacional y desbalance de representación (Población Ancestral): El dataset The Cancer Genome Atlas (TCGA) está predominantemente compuesto por muestras de individuos de ancestría europea. Al entrenar un modelo con estos datos, la IA puede presentar una drástica pérdida de precisión o falsos negativos/positivos al analizar perfiles genéticos de poblaciones subrepresentadas (como mestizas o indígenas mesoamericanas).
+
+Sobreajuste (Overfitting) por alta dimensionalidad (p >> n): Los datos genómicos (como secuenciación RNA-seq o variantes SNV) contienen decenas de miles de características (genes/mutaciones) para un número comparativamente reducido de pacientes en TCGA. Sin una selección rigurosa de características, el modelo memorizará el ruido del dataset en lugar de aprender señales biológicas generalizables.
+
+Efectos de lote (Batch Effects) y variabilidad instrumental: TCGA consolida muestras recolectadas a lo largo de años en diferentes centros de investigación con distintas plataformas de secuenciación y reactivos. Si el modelo no normaliza adecuadamente estos artefactos técnicos, terminará clasificando el laboratorio de origen o el lote de secuenciación en lugar del verdadero patrón oncogénico.
+
+Falta de interpretabilidad y explicabilidad (Black Box): Muchas arquitecturas complejas (redes neuronales profundas) identifican correlaciones estadísticas no explicables biológicamente. Para uso clínico, si el modelo señala riesgo de cáncer basándose en genes sin significancia funcional conocida (o artefactos genómicos), los oncólogos no podrán auditar la decisión ni validar la hipótesis biológica.
+
+Deriva de datos (Data Drift) y falta de estandarización clínica: Las muestras de TCGA proceden de tejidos procesados mediante protocolos específicos (como congelación en fresco o fijación en formalina). En la práctica clínica real, la calidad del ADN/ARN extraído y las métricas de secuenciación varían drásticamente, lo que degrada el rendimiento del modelo durante el despliegue (concept drift).
+
+Riesgos Éticos o Legales
+Riesgos Éticos
+Discriminación genética y estigmatización: El descubrimiento de predisposiciones oncogénicas mediante IA puede ser utilizado negativamente si los resultados condicionan la empleabilidad o la percepción social del paciente, vulnerando la equidad en el acceso a oportunidades laborales.
+
+Impacto psicológico y falsos diagnósticos: Generar falsos positivos o falsos negativos en diagnósticos oncológicos causa ansiedad severa, procedimientos invasivos innecesarios (biopsias) o, en el peor escenario, el retraso del tratamiento oportuno de un tumor maligno.
+
+Pérdida de la autonomía del paciente e informado automatizado: Delegar la detección de riesgo de cáncer a algoritmos opacos limita la capacidad del paciente para comprender las implicaciones de sus datos genéticos antes de dar su consentimiento para estudios de tamizaje.
+
+Barreras de equidad y brecha de acceso: Desarrollar herramientas basadas exclusivamente en datos de bases públicas globales puede llevar a que los beneficios de la IA médica beneficien únicamente a sectores con acceso a secuenciación genómica avanzada, profundizando las desigualdades en salud pública.
+
+Riesgos Legales y Marco Regulatorio Mexicano
+Reidentificación de datos genéticos desanonimizados: Aunque TCGA distribuye datos sin identificadores directos, los datos genómicos son inherentemente únicos. Mediante técnicas de vinculación con bases de datos públicas o genealógicas, la IA podría reidentificar a individuos o sus consanguíneos.
+
+Ley aplicable: Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).
+
+Fecha de publicación en el DOF: 21 de marzo de 2025 (nueva ley publicada en el DOF que sustituyó a la versión original del 5 de julio de 2010). Nota: Los datos genéticos tienen la categoría explícita de datos personales sensibles.
+
+Uso de la IA como dispositivo médico (Software as a Medical Device - SaMD) sin registro sanitario: Implementar un algoritmo para detectar o predecir cáncer requiere certificación de seguridad, eficacia y control de calidad antes de su uso clínico comercial o en instituciones de salud.
+
+Ley aplicable: Ley General de Salud (LGS).
+
+Fecha de publicación en el DOF: 7 de febrero de 1984 (con reformas continuas sobre insumos para la salud y tecnologías de la información).
+
+Inobservancia de estándares técnicos y control de calidad clínica: Falta de cumplimiento de normas oficiales en la recolección, almacenamiento y análisis de muestras biológicas y software de diagnóstico en México.
+
+Ley aplicable: Ley de Infraestructura de la Calidad.
+
+Fecha de publicación en el DOF: 1 de julio de 2020 (ley que abroogó la Ley Federal sobre Metrología y Normalización para regular las Normas Oficiales Mexicanas - NOM).
+
+Vulneración de la propiedad intelectual y derechos de autor sobre modelos y bases de datos derivativas: Conflictos en la titularidad del software, la arquitectura del modelo de IA o las patentes de biomarcadores descubiertos utilizando datos públicos de acceso abierto como TCGA.
+
+Ley aplicable: Ley Federal del Derecho de Autor (LFDA).
+
+Fecha de publicación en el DOF: 24 de diciembre de 1996.
+
+Responsabilidad civil y médica por mala práctica asistida por IA: Ambigüedad legal para determinar la responsabilidad jurídica (daños y perjuicios) ante un fallo diagnóstico (falso negativo de cáncer) producido por el algoritmo frente a la responsabilidad del médico tratante.
+
+Ley aplicable: Código Civil Federal.
+
+Fecha de publicación en el DOF: Publicado en cuatro partes en el Diario Oficial de la Federación el 26 de mayo, 14 de julio, 3 y 31 de agosto de 1928 (en vigor desde el 1 de septiembre de 1932).
+```
+
+## Verificación
+
+| Afirmación verificable | Fuente primaria | Clasificación |
+|---|---|---|
+| La LFPDPPP considera la información genética como dato personal sensible | Cámara de Diputados, LFPDPPP vigente, art. 2 fr. VI: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf | Correcta |
+| La nueva LFPDPPP se publicó en el DOF el 21 de marzo de 2025 | Cámara de Diputados, LFPDPPP vigente (encabezado y Transitorio Primero) | Parcialmente correcta (se publicó el 20 de marzo; el 21 es su entrada en vigor) |
+| La LFPDPPP original se publicó el 5 de julio de 2010 y fue sustituida | Cámara de Diputados, leyes abrogadas: https://www.diputados.gob.mx/LeyesBiblio/abro/lfpdppp_2010.htm | Correcta |
+| La Ley General de Salud se publicó en el DOF el 7 de febrero de 1984 | Cámara de Diputados, LGS: https://www.diputados.gob.mx/LeyesBiblio/pdf/LGS.pdf | Correcta |
+| La Ley de Infraestructura de la Calidad se publicó el 1 de julio de 2020 y abrogó la Ley Federal sobre Metrología y Normalización | DOF, edición vespertina del 01/07/2020 (síntesis SCJN e IDC Online) | Correcta |
+| La Ley Federal del Derecho de Autor se publicó en el DOF el 24 de diciembre de 1996 | Cámara de Diputados, LFDA: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFDA.pdf | Correcta |
+| El Código Civil Federal se publicó en cuatro partes: 26 de mayo, 14 de julio, 3 y 31 de agosto de 1928 | Cámara de Diputados, CCF: https://www.diputados.gob.mx/LeyesBiblio/pdf/CCF.pdf | Correcta |
+| El Código Civil Federal entró en vigor el 1 de septiembre de 1932 | CCF, Artículo 1o. transitorio | Parcialmente correcta (comenzó a regir el 1 de octubre de 1932; el 1 de septiembre es la fecha de la reforma a ese transitorio) |
+
+Tasa de error de esta respuesta: 25% (2 de 8 afirmaciones verificadas)
+
+## Evaluación
+
+- Qué funcionó: todas las leyes citadas existen y casi todas las fechas de publicación son exactas. A diferencia del P01, esta vez el modelo sí identificó la nueva LFPDPPP de 2025 como la vigente.
+- Qué falló: los dos errores fueron en fechas cercanas que se confunden fácilmente (publicación vs. entrada en vigor, y fecha de reforma vs. fecha de vigencia). Los riesgos técnicos y éticos no traen fuentes, así que son orientativos y deben respaldarse con artículos antes de usarlos en el documento del proyecto.
+- Qué cambiaré en la siguiente versión: pedir que distinga entre fecha de publicación y fecha de entrada en vigor, y que cada riesgo técnico venga con al menos una referencia verificable.
+
+## Historial de versiones
+
+| Versión | Fecha | Cambio realizado | Resultado del cambio |
+|---|---|---|---|
+| v1 | 2026-10-18 | Versión inicial | 25% de error en 8 afirmaciones verificadas |
+
+## Datos usados
+
+Confirmo que este prompt cumple la sección 5 de la política de datos del proyecto: [sí / no, y por qué]
