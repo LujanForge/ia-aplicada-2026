@@ -1,0 +1,10 @@
+# Portafolio de prompts del proyecto Cerbero
+
+Proyecto: IA para detectar indicios de células cancerígenas a partir de datos genéticos (dataset público TCGA).
+Equipo: Luis, Enrique . Materia: Inteligencia Artificial Aplicada.
+
+| ID | Objetivo | Modelo | Versión actual | Archivo |
+|---|---|---|---|---|
+| P01 | Generar afirmaciones verificables sobre regulación de datos y ciberseguridad en México (Lab. semana 6) | ChatGPT y Gemini Flash | v1 | [P01_regulacion_datos_mexico.md](P01_regulacion_datos_mexico.md) |
+| P02 | Explorar datasets, modelos y resultados previos para detectar cáncer con datos genéticos | Gemini | v2 | [P02_exploracion_problema.md](P02_exploracion_problema.md) |
+| P03 | Identificar riesgos técnicos, éticos y legales de la solución y leyes mexicanas aplicables | Gemini | v1 | [P03_riesgos_solucion.md](P03_riesgos_solucion.md) |
