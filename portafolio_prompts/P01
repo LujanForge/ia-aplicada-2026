@@ -1,0 +1,85 @@
+# P01 — Regulación de protección de datos y ciberseguridad en México
+
+## Objetivo
+
+Generar un párrafo con afirmaciones verificables (leyes, fechas, cifras y referencias) sobre la regulación de datos y ciberseguridad en México, para medir la tasa de error de los modelos antes de usar datos generados por IA en el proyecto.
+
+## Modelo y configuración
+
+- Modelo: ChatGPT (interfaz web, versión no visible) y Gemini Flash (cuenta de Global University)
+- Temperatura: por defecto (no se controla en la interfaz web)
+- Fecha de ejecución: 2026-10-18
+
+## Prompt (versión v1)
+
+```text
+Redacta un párrafo de 150 palabras sobre la regulación de protección de datos y ciberseguridad en México. Incluye: el nombre exacto de al menos dos leyes o normas con su fecha de publicación en el Diario Oficial de la Federación, una cifra estadística sobre incidentes de ciberseguridad en México con su fuente y dos referencias bibliográficas completas en formato APA 7.
+```
+
+## Resultado obtenido
+
+### Modelo 1: ChatGPT
+
+```text
+La regulación de protección de datos y ciberseguridad en México busca garantizar la privacidad y reducir los riesgos digitales. La Ley Federal de Protección de Datos Personales en Posesión de los Particulares, publicada en el Diario Oficial de la Federación (DOF) el 5 de julio de 2010, regula el tratamiento legítimo e informado de datos personales por entidades privadas. Asimismo, la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados, publicada en el DOF el 26 de enero de 2017, establece obligaciones para las instituciones públicas en esta materia. Aunque estas leyes protegen la información personal, la prevención de ataques también requiere controles técnicos, capacitación y gestión de riesgos. Según el Instituto Nacional de Estadística y Geografía (INEGI, 2025), durante 2024 se identificaron 43,116 incidentes de seguridad informática por instituciones federales y estatales. Esta cifra evidencia la importancia de fortalecer las políticas de ciberseguridad y la respuesta institucional ante amenazas digitales.
+
+Referencias bibliográficas (APA 7)
+
+Instituto Nacional de Estadística y Geografía. (2025, 14 de agosto). Censo Nacional de Seguridad Pública Federal y Estatal 2025: Reporte de resultados 28/25. https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/CNSPE/CNSPE2025_RR.pdf
+
+Secretaría de Gobernación. (2017, 26 de enero). Decreto por el que se expide la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados. Diario Oficial de la Federación. https://www.dof.gob.mx/nota_detalle.php?codigo=5469949&fecha=26/01/2017
+```
+
+### Modelo 2: Gemini Flash
+
+```text
+La regulación del marco digital y la privacidad en México ha evolucionado sustancialmente para afrontar la sofisticación de las amenazas informáticas. En el ámbito normativo, destacan la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados, publicada el 26 de enero de 2017 en el Diario Oficial de la Federación, y la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, cuyo nuevo decreto se publicó en el Diario Oficial de la Federación el 20 de marzo de 2025. Este robustecimiento legislativo responde a un entorno crítico: según el reporte de FortiGuard Labs de Fortinet, México registró 58.1 billones de intentos de ciberataques durante el año 2025, situándolo entre los países más amenazados de América Latina. La convergencia entre marcos jurídicos estrictos y mecanismos de ciberseguridad eficaces resulta indispensable para mitigar riesgos, resguardar la identidad digital de los ciudadanos y salvaguardar la infraestructura crítica nacional frente a incidentes cibernéticos recurrentes.
+
+Referencias bibliográficas (APA 7)
+
+Diario Oficial de la Federación. (2025, 20 de marzo). Decreto por el que se expide la Ley Federal de Protección de Datos Personales en Posesión de los Particulares. Secretaría de Gobernación. https://www.dof.gob.mx/
+
+Riquelme, R. (2026, 5 de mayo). México registró 58.1 billones de intentos de ciberataques en 2025. El Economista. https://www.eleconomista.com.mx/tecnologia/mexico-registro-58-1-billones-intentos-ciberataques-20260505-811966.html
+```
+
+## Verificación
+
+| Afirmación verificable | Fuente primaria | Clasificación |
+|---|---|---|
+| A01 (ChatGPT) Existe la LFPDPPP | Cámara de Diputados, LFPDPPP vigente | Correcta |
+| A02 (ChatGPT) LFPDPPP publicada el 05/07/2010 | Cámara de Diputados, leyes abrogadas (lfpdppp_2010) | Parcialmente correcta |
+| A03 (ChatGPT) La LFPDPPP regula datos en manos de privados | LFPDPPP vigente, art. 1 | Correcta |
+| A04 (ChatGPT) Existe la LGPDPPSO | Cámara de Diputados, LGPDPPSO vigente | Correcta |
+| A05 (ChatGPT) LGPDPPSO publicada el 26/01/2017 | Cámara de Diputados, leyes abrogadas (lgpdppso_2017) | Parcialmente correcta |
+| A06 (ChatGPT) La LGPDPPSO obliga a instituciones públicas | LGPDPPSO vigente, art. 3 fr. XXVII | Correcta |
+| A07 (ChatGPT) 43,116 incidentes de seguridad informática en 2024 | INEGI, CNSPF-E 2025, Reporte de resultados 28/25 | Alucinada |
+| A08 (ChatGPT) La cifra proviene del CNSPF-E 2025 del INEGI | INEGI, Reporte de resultados 28/25 | Correcta |
+| A09 (ChatGPT) Referencia INEGI (2025, 14 de agosto) | INEGI, Reporte de resultados 28/25 | Correcta |
+| A10 (ChatGPT) Referencia SEGOB (2017), decreto LGPDPPSO | DOF, 26/01/2017 | Correcta |
+| A11 (Gemini) Existe la LGPDPPSO | Cámara de Diputados, LGPDPPSO vigente | Correcta |
+| A12 (Gemini) LGPDPPSO publicada el 26/01/2017 | Cámara de Diputados, leyes abrogadas (lgpdppso_2017) | Parcialmente correcta |
+| A13 (Gemini) Existe una nueva LFPDPPP | Cámara de Diputados, LFPDPPP vigente | Correcta |
+| A14 (Gemini) Nueva LFPDPPP publicada el 20/03/2025 | LFPDPPP vigente, encabezado | Correcta |
+| A15 (Gemini) 58.1 billones de intentos de ciberataques en 2025 | Fortinet, reporte 2026 (vía El Economista) | Parcialmente correcta |
+| A16 (Gemini) Fuente: FortiGuard Labs de Fortinet | Fortinet, Threat Landscape Report | Correcta |
+| A17 (Gemini) México entre los más amenazados de AL | Fortinet, reporte 2026 (vía El Economista) | Correcta |
+| A18 (Gemini) Referencia DOF (2025, 20 de marzo) | LFPDPPP vigente / decreto del 20/03/2025 | Parcialmente correcta |
+| A19 (Gemini) Referencia Riquelme (2026), El Economista | El Economista (republicado en Yahoo Noticias) | Correcta |
+
+Tasa de error de esta respuesta: 31.6% en total (ChatGPT 30.0%, Gemini 33.3%)
+
+## Evaluación
+
+- Qué funcionó: los dos modelos acertaron los nombres de las leyes (0% de error en ese tipo) y dieron referencias que en su mayoría existen.
+- Qué falló: las fechas (75% de error) y las cifras (100% de error). Ambos modelos presentaron como vigentes leyes abrogadas en 2025; ChatGPT dio una cifra que no aparece en la fuente que cita y Gemini tradujo mal "billion" como "billones".
+- Qué cambiaré en la siguiente versión: pedir explícitamente que solo cite leyes vigentes a la fecha de ejecución, que indique la página exacta de la cifra en el informe original y que no use notas periodísticas como referencia.
+
+## Historial de versiones
+
+| Versión | Fecha | Cambio realizado | Resultado del cambio |
+|---|---|---|---|
+| v1 | 2026-10-18 | Versión inicial | Tasa de error del 31.6% |
+
+## Datos usados
+
+Confirmo que este prompt cumple la sección 5 de la política de datos del proyecto: [sí / no, y por qué]
